@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.diners.bff</groupId>
-  <artifactId>ms-ddd-archetype</artifactId>
+  <artifactId>ms-bff-archetype</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>
