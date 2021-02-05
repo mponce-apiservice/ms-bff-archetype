@@ -96,7 +96,6 @@
             <goals>
               <goal>build</goal>
               <goal>generate-code</goal>
-              <goal>generate-code-tests</goal>
             </goals>
           </execution>
         </executions>
@@ -110,7 +109,6 @@
 	    <artifactId>maven-release-plugin</artifactId>
 	    <configuration>
 	      <tagNameFormat>v@{project.version}</tagNameFormat>
-	      <autoVersionSubmodules>true</autoVersionSubmodules>
 	    </configuration>
 	  </plugin>
       <plugin>
