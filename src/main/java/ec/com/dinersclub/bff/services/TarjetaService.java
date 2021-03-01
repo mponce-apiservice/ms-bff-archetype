@@ -1,6 +1,5 @@
 package ec.com.dinersclub.bff.services;
 
-import ec.com.dinersclub.dddmodules.application.cqrs.commands.dto.CreateTarjetaCommand;
 import ec.com.dinersclub.dddmodules.application.grpc.MutinyTarjetaGrpc;
 import ec.com.dinersclub.dddmodules.application.grpc.TarjetaRequest;
 import ec.com.dinersclub.dddmodules.application.grpc.TarjetaResponse;
