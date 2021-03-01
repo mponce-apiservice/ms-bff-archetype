@@ -3,19 +3,18 @@ package ec.com.dinersclub.bff.rest.orchestrations;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import ec.com.dinersclub.bff.services.CountriesService;
-import ec.com.dinersclub.bff.services.models.Country;
-import io.quarkus.grpc.runtime.annotations.GrpcService;
 import ec.com.dinersclub.bff.rest.response.CountryResponse;
-
-import ec.com.dinersclub.dddmodules.application.grpc.GreeterGrpc;
-import ec.com.dinersclub.dddmodules.application.grpc.HelloRequest;
+import ec.com.dinersclub.bff.services.CountriesService;
+import ec.com.dinersclub.bff.services.TarjetaService;
+import ec.com.dinersclub.bff.services.models.Country;
+import ec.com.dinersclub.bff.services.models.CreateTarjetaCommand;
 
 @ApplicationScoped
 public class AggregatorServices implements IAggregatorServices {
@@ -24,9 +23,8 @@ public class AggregatorServices implements IAggregatorServices {
     @RestClient
     CountriesService countriesService;
 	
-	@Inject
-    @GrpcService("hello")                     
-    GreeterGrpc.GreeterBlockingStub client;
+	@Inject                  
+	TarjetaService tarjetaService;
 
 	@Override
 	public Set<CountryResponse> getCountryByName(String name) {
@@ -36,7 +34,7 @@ public class AggregatorServices implements IAggregatorServices {
     		Iterator<Country> itr = country.iterator();
 	        while (itr.hasNext()) { 
 	        	Country c = itr.next();
-	        	response.add(new CountryResponse(c.name,c.alpha2Code,c.capital,client.sayHello(HelloRequest.newBuilder().setName(name).build()).getMessage()));
+	        	response.add(new CountryResponse(c.name,c.alpha2Code,c.capital,tarjetaService.createTarjetaCommand(new CreateTarjetaCommand(UUID.randomUUID(),name))));
 	        }
     	}
     	return response;
